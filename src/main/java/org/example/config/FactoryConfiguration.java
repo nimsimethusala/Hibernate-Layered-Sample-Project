@@ -2,6 +2,7 @@ package org.example.config;
 
 import org.example.dto.CustomerDTO;
 import org.example.entity.Customer;
+import org.example.entity.Item;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -14,6 +15,7 @@ public class FactoryConfiguration {
     private FactoryConfiguration() {
         Configuration configuration = new Configuration().configure();
         configuration.addAnnotatedClass(Customer.class);
+        configuration.addAnnotatedClass(Item.class);
         sessionFactory = configuration.buildSessionFactory();
     }
 

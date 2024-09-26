@@ -1,8 +1,9 @@
 package org.example.dao.impl;
 
 import org.example.config.FactoryConfiguration;
-import org.example.dao.CustomerDAO;
+import org.example.dao.ItemDAO;
 import org.example.entity.Customer;
+import org.example.entity.Item;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -11,10 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDaoImpl implements CustomerDAO {
-
+public class ItemDaoImpl implements ItemDAO {
     @Override
-    public boolean save(Customer customer) {
+    public boolean save(Item customer) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -25,11 +25,11 @@ public class CustomerDaoImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean update(Customer customer) {
+    public boolean update(Item item) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.update(customer);
+        session.update(item);
         transaction.commit();
         session.close();
         return true;
@@ -40,20 +40,20 @@ public class CustomerDaoImpl implements CustomerDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("SELECT customerId FROM Customer ORDER BY customerId DESC LIMIT 1");
-        String customerId = (String) query.uniqueResult();
+        Query query = session.createQuery("SELECT itemId FROM Item ORDER BY itemId DESC LIMIT 1");
+        String itemid = (String) query.uniqueResult();
         transaction.commit();
         session.close();
-        return splitCustomerId(customerId);
+        return splitItemId(itemid);
     }
 
     @Override
-    public boolean delete(String cusId) {
+    public boolean delete(String itemId) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("DELETE FROM Customer WHERE customerId = :cusId");
-        query.setParameter("cusId", cusId);
+        Query query = session.createQuery("DELETE FROM Item WHERE itemId = :itemId");
+        query.setParameter("itemId", itemId);
         query.executeUpdate();
 
         transaction.commit();
@@ -62,59 +62,60 @@ public class CustomerDaoImpl implements CustomerDAO {
     }
 
     @Override
-    public Customer searchById(String cusid) {
+    public Item searchById(String itemId) throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("FROM Customer WHERE customerId = :cusid");
-        query.setParameter("cusid", cusid);
+        Query query = session.createQuery("FROM Item WHERE itemId = :itemId");
+        query.setParameter("itemId", itemId);
 
-        List<Customer> customers = query.list();
+        List<Item> items = query.list();
 
-        for (Customer customer : customers){
-            String customerId = customer.getCustomerId();
-            String name = customer.getName();
-            String address = customer.getAddress();
-            int contact = customer.getContact();
+        for (Item item : items){
+            String itemid = item.getItemId();
+            String name = item.getItemName();
+            int count = item.getCount();
+            double price = item.getPrice();
 
-            Customer customer1 = new Customer(customerId, name, address, contact);
+            Item item1 = new Item(itemid, name, count, price);
             transaction.commit();
             session.close();
-            return customer1;
+
+            return item1;
         }
         return null;
     }
 
     @Override
-    public ArrayList<Customer> getAll() {
+    public ArrayList<Item> getAll() throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("FROM Customer");
-        ArrayList<Customer> customers = (ArrayList<Customer>) query.list();
+        Query query = session.createQuery("FROM Item");
+        ArrayList<Item> items = (ArrayList<Item>) query.list();
 
         transaction.commit();
         session.close();
-        return customers;
+        return items;
     }
 
-    private String splitCustomerId(String string) {
+    private String splitItemId(String string) {
         if(string != null) {
-            String[] strings = string.split("C0");
+            String[] strings = string.split("I0");
             int id = Integer.parseInt(strings[1]);
             id++;
             String ID = String.valueOf(id);
             int length = ID.length();
             if (length < 2){
-                return "C00"+id;
+                return "I00"+id;
             }else {
                 if (length < 3){
-                    return "C0"+id;
+                    return "I0"+id;
                 }else {
-                    return "C"+id;
+                    return "I"+id;
                 }
             }
         }
-        return "C001";
+        return "I001";
     }
 }

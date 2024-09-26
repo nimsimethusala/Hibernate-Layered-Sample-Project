@@ -130,6 +130,11 @@ public class CustomerFormController {
         CustomerDTO customerDTO = new CustomerDTO(cusId, cusName, address, contact);
 
         boolean isupdated = customerBO.updateCustomer(customerDTO);
+
+        if (isupdated){
+            new Alert(Alert.AlertType.CONFIRMATION, "Customer is Updated...!").show();
+            clearFields();
+        }
     }
 
     public void lblCustomerOnAction(MouseEvent mouseEvent) {
