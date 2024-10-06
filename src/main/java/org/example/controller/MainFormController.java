@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.example.HelloApplication;
 
 import java.io.IOException;
 
@@ -43,7 +42,15 @@ public class MainFormController {
 
     @FXML
     void imgOrderOnAction(MouseEvent event) {
-
+        try {
+            AnchorPane root = FXMLLoader.load(getClass().getResource("/org/example/view/orderForm.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) rootMain.getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

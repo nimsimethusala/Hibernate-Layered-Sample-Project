@@ -6,7 +6,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane fx:id="rootMain" prefHeight="400.0" prefWidth="620.0" style="-fx-background-color: #c7ecee;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.MainFormController">
    <children>
       <Text layoutX="200.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAIN FORM">
@@ -15,17 +14,17 @@
          </font>
       </Text>
       <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="37.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="33.0" layoutY="147.0" onDragDetected="#imgCustomerOnAction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="33.0" layoutY="147.0" onMouseClicked="#imgCustomerOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/User free icons designed by Freepik.jpeg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="237.0" layoutY="147.0" onDragDetected="#imgItemOnAction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="237.0" layoutY="147.0" onMouseClicked="#imgItemOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/Edit free icons designed by Freepik.jpeg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="438.0" layoutY="147.0" onDragDetected="#imgOrderOnAction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="151.0" layoutX="438.0" layoutY="147.0" onMouseClicked="#imgOrderOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/Shopping free vector icons designed by Freepik.jpeg" />
          </image>

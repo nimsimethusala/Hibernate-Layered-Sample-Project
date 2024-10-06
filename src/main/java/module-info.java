@@ -6,6 +6,7 @@ module org.example.demo {
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
     requires java.naming;
+    requires com.jfoenix;
 
 
     opens org.example to javafx.fxml;

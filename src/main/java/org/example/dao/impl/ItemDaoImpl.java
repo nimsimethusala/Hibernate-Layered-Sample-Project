@@ -2,7 +2,6 @@ package org.example.dao.impl;
 
 import org.example.config.FactoryConfiguration;
 import org.example.dao.ItemDAO;
-import org.example.entity.Customer;
 import org.example.entity.Item;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -33,18 +32,6 @@ public class ItemDaoImpl implements ItemDAO {
         transaction.commit();
         session.close();
         return true;
-    }
-
-    @Override
-    public String generateNextId() {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        Query query = session.createQuery("SELECT itemId FROM Item ORDER BY itemId DESC LIMIT 1");
-        String itemid = (String) query.uniqueResult();
-        transaction.commit();
-        session.close();
-        return splitItemId(itemid);
     }
 
     @Override
@@ -99,6 +86,18 @@ public class ItemDaoImpl implements ItemDAO {
         return items;
     }
 
+    @Override
+    public String generateNextId() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT itemId FROM Item ORDER BY itemId DESC LIMIT 1");
+        String itemid = (String) query.uniqueResult();
+        transaction.commit();
+        session.close();
+        return splitItemId(itemid);
+    }
+
     private String splitItemId(String string) {
         if(string != null) {
             String[] strings = string.split("I0");
@@ -117,5 +116,50 @@ public class ItemDaoImpl implements ItemDAO {
             }
         }
         return "I001";
+    }
+
+    @Override
+    public String getName(String itemId) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT itemName from Item where itemId = :itemId");
+        query.setParameter("itemId", itemId);
+        String itemName = (String) query.uniqueResult();
+
+        transaction.commit();
+        session.close();
+
+        return itemName;
+    }
+
+    @Override
+    public double getPrice(String itemId) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT price from Item where itemId = :itemId");
+        query.setParameter("itemId", itemId);
+        double price = (double) query.uniqueResult();
+
+        transaction.commit();
+        session.close();
+
+        return price;
+    }
+
+    @Override
+    public boolean updateQty(String itemId, int qty, Session session) {
+        Query query = session.createQuery("update Item set count = count - ?1 where itemId = ?2");
+        query.setParameter(1, qty);
+        query.setParameter(2, itemId);
+
+        int result = query.executeUpdate();
+
+        if (result > 0) {
+            return true;
+        }
+
+        return false;
     }
 }

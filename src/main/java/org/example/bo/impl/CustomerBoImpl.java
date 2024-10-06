@@ -1,10 +1,14 @@
 package org.example.bo.impl;
 
 import org.example.bo.CustomerBO;
+import org.example.config.FactoryConfiguration;
 import org.example.dao.CustomerDAO;
 import org.example.dao.DAOFactory;
 import org.example.dto.CustomerDTO;
 import org.example.entity.Customer;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,5 +53,23 @@ public class CustomerBoImpl implements CustomerBO {
             customerDTOS.add(customerDTO);
         }
         return customerDTOS;
+    }
+
+    @Override
+    public String customerName(String cusid) {
+        return customerDAO.customerName(cusid);
+    }
+
+    @Override
+    public List<String> getCustomerId() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT customerId FROM Customer");
+        List<String> customerIds = query.list();
+
+        transaction.commit();
+        session.close();
+        return customerIds;
     }
 }

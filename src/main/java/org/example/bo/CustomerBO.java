@@ -17,4 +17,8 @@ public interface CustomerBO extends SuperBO{
     public CustomerDTO searchByCustomerId(String cusid) throws SQLException, ClassNotFoundException;
 
     public List<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException;
+
+    String customerName(String cusid);
+
+    List<String> getCustomerId();
 }

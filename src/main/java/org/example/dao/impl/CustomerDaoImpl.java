@@ -12,6 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDAO {
+    @Override
+    public String customerName(String cusid) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT name from Customer where customerId = :cusid");
+        query.setParameter("cusid", cusid);
+        String cusName = (String) query.uniqueResult();
+
+        transaction.commit();
+        session.close();
+
+        return cusName;
+    }
 
     @Override
     public boolean save(Customer customer) {

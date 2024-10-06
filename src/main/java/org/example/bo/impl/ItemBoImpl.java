@@ -54,4 +54,14 @@ public class ItemBoImpl implements ItemBO {
     public boolean updateItem(ItemDTO itemDTO) {
         return itemDAO.update(new Item(itemDTO.getItemId(), itemDTO.getItemName(), itemDTO.getCount(), itemDTO.getPrice()));
     }
+
+    @Override
+    public String getItemName(String itemId) {
+        return itemDAO.getName(itemId);
+    }
+
+    @Override
+    public double getPrice(String itemId) {
+        return itemDAO.getPrice(itemId);
+    }
 }

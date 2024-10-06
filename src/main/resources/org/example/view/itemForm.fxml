@@ -5,14 +5,15 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane fx:id="rootItem" prefHeight="545.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ItemFormController">
    <children>
-      <Text layoutX="47.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM FORM">
+      <Text layoutX="107.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM FORM">
          <font>
             <Font name="System Bold" size="33.0" />
          </font>
@@ -75,5 +76,10 @@
          </font>
       </Text>
       <TextField fx:id="txtSearch" layoutX="399.0" layoutY="55.0" onAction="#txtSearchOnAction" prefHeight="26.0" prefWidth="230.0" />
+      <ImageView fitHeight="50.0" fitWidth="56.0" layoutX="21.0" layoutY="20.0" onMouseClicked="#imgHomeOnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/Real Estate Symbols Clipart Transparent PNG Hd, Real Estate House Icon, House Icons, Icon, Real PNG Image For Free Download.jpeg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

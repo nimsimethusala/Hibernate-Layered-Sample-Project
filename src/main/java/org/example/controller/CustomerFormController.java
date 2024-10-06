@@ -4,17 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.example.bo.BOFactory;
 import org.example.bo.CustomerBO;
 import org.example.dto.CustomerDTO;
 import org.example.tm.CustomerTm;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -186,6 +190,19 @@ public class CustomerFormController {
 
         } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
+    @FXML
+    void imgHomeOnAction(MouseEvent event) {
+        try {
+            AnchorPane root = FXMLLoader.load(getClass().getResource("/org/example/view/mainForm.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) CustomerRoot.getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

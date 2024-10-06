@@ -5,33 +5,35 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="CustomerRoot" prefHeight="507.0" prefWidth="742.0" style="-fx-background-color: #f7f1e3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.CustomerFormController">
+<AnchorPane fx:id="CustomerRoot" prefHeight="507.0" prefWidth="776.0" style="-fx-background-color: #f7f1e3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.CustomerFormController">
    <children>
-      <Text layoutX="45.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CUSTOMER FORM">
+      <Text layoutX="97.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CUSTOMER FORM">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
       </Text>
-      <Text layoutX="48.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+      <Text layoutX="58.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Text>
-      <Text layoutX="46.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+      <Text layoutX="56.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Text>
-      <Text layoutX="47.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
+      <Text layoutX="57.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Text>
-      <TextField fx:id="txtName" layoutX="46.0" layoutY="214.0" />
-      <TextField fx:id="txtAddress" layoutX="46.0" layoutY="283.0" />
-      <TextField fx:id="txtContact" layoutX="46.0" layoutY="355.0" />
-      <TableView fx:id="tblCustomer" layoutX="240.0" layoutY="123.0" prefHeight="264.0" prefWidth="470.0">
+      <TextField fx:id="txtName" layoutX="56.0" layoutY="218.0" />
+      <TextField fx:id="txtAddress" layoutX="56.0" layoutY="287.0" />
+      <TextField fx:id="txtContact" layoutX="56.0" layoutY="359.0" />
+      <TableView fx:id="tblCustomer" layoutX="250.0" layoutY="127.0" prefHeight="264.0" prefWidth="470.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="95.20002746582031" text="ID" />
           <TableColumn fx:id="colName" prefWidth="124.0" text="Name" />
@@ -39,37 +41,42 @@
             <TableColumn fx:id="colContact" prefWidth="115.20001220703125" text="Contact" />
         </columns>
       </TableView>
-      <Button layoutX="113.0" layoutY="434.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: #ced6e0;" text="Save">
+      <Button layoutX="123.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: #ced6e0;" text="Save">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="254.0" layoutY="434.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #ced6e0;" text="Update">
+      <Button layoutX="264.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #ced6e0;" text="Update">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="398.0" layoutY="434.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #ced6e0;" text="Delete">
+      <Button layoutX="408.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #ced6e0;" text="Delete">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="540.0" layoutY="433.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #ced6e0;" text="Clear">
+      <Button layoutX="550.0" layoutY="437.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #ced6e0;" text="Clear">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Text layoutX="48.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID">
+      <Text layoutX="58.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Label fx:id="lblCustomerId" layoutX="45.0" layoutY="140.0" onDragDetected="#lblCustomerOnAction" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #ffffff;" />
-      <TextField fx:id="txtSearch" layoutX="456.0" layoutY="44.0" onAction="#txtSearchOnAction" prefHeight="26.0" prefWidth="254.0" />
-      <Text layoutX="400.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search">
+      <Label fx:id="lblCustomerId" layoutX="55.0" layoutY="144.0" onDragDetected="#lblCustomerOnAction" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #ffffff;" />
+      <TextField fx:id="txtSearch" layoutX="488.0" layoutY="48.0" onAction="#txtSearchOnAction" prefHeight="26.0" prefWidth="254.0" />
+      <Text layoutX="432.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
+      <ImageView fitHeight="43.0" fitWidth="41.0" layoutX="14.0" layoutY="19.0" onMouseClicked="#imgHomeOnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/Real Estate Symbols Clipart Transparent PNG Hd, Real Estate House Icon, House Icons, Icon, Real PNG Image For Free Download.jpeg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
